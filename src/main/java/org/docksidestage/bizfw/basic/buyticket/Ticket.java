@@ -23,17 +23,29 @@ public class Ticket {
 
     // ===================================================================================
     //                                                                           Attribute
+    //
     //                                                                           =========
+    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    private static final int TWO_DAY_PRICE = 13200;
     private final int displayPrice;
     private boolean alreadyIn;
+    private String type;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Ticket(int displayPrice) {
         this.displayPrice = displayPrice;
+        this.type = jugdeType(displayPrice);
     }
 
+    private String jugdeType(int displayPrice) {
+        if (displayPrice == TWO_DAY_PRICE)
+            return "TWO DAY TICKET";
+        else if (displayPrice == ONE_DAY_PRICE)
+            return "ONE DAY TICKET";
+        return "UNKNOWN TICKET";
+    }
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
@@ -53,5 +65,9 @@ public class Ticket {
 
     public boolean isAlreadyIn() {
         return alreadyIn;
+    }
+
+    public String getType() {
+        return this.type;
     }
 }
