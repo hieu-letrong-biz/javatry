@@ -189,12 +189,12 @@ public class Step02IfForTest extends PlainTestCase {
             if (stage.startsWith("br")) {
                 return;
             }
-            tempStageList.add(0,stage);
-            if (stage.contains("ga") && sb.length()==0) {
+            tempStageList.add(0, stage);
+            if (stage.contains("ga") && sb.length() == 0) {
                 sb.append(tempStageList.get(0));
             }
         });
-        sea = sb.length()>0 ? sb.toString() : tempStageList.get(0).toString();
+        sea = sb.length() > 0 ? sb.toString() : tempStageList.get(0).toString();
         //if there is no stage contain "ga", return the last sea value was assigned
         // NOTE ここの考慮素晴らしかった、特に質問では言っていない部分は自分考えてエラーパターン考えた上で実装しましょう winkichanwi
         log(sea); // should be same as before-fix hangar
@@ -217,7 +217,7 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> tempStageList = new ArrayList<>();
 
         stageList.forEach(stage -> {
-            if (stage.charAt(0) >= 'd' && stage.charAt(stage.length()-1)<= 'o') {
+            if (stage.charAt(0) >= 'd' && stage.charAt(stage.length() - 1) <= 'o') {
                 tempStageList.add(stage);
             }
         });
