@@ -43,7 +43,7 @@ public class Step04MethodTest extends PlainTestCase {
         String sea = functionSomething("mystic");
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? => mysmys
     }
 
     private String functionSomething(String name) {
