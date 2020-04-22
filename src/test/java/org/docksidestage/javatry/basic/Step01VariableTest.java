@@ -132,13 +132,13 @@ public class Step01VariableTest extends PlainTestCase {
         String sea = "harbor";
         int land = 415;
         helpMethodArgumentImmutableMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
         ++land;
         String landStr = String.valueOf(land); // is "416"
-        sea.concat(landStr);
+        sea.concat(landStr); //return a value only, don't have effect outside this scope
     }
 
     // -----------------------------------------------------
@@ -149,12 +149,12 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor416
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
         ++land;
-        sea.append(land);
+        sea.append(land); //String builder's append method return a reference to sea object
     }
 
     // -----------------------------------------------------
@@ -165,7 +165,7 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentVariable(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
     }
 
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
@@ -193,8 +193,13 @@ public class Step01VariableTest extends PlainTestCase {
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
+    private int piari;
     public void test_variable_writing() {
         // define variables here
+        String sea = "mystic";
+        Integer land = null;
+        String all_vars = sea + ","+ land + "," + piari;
+        log(all_vars);
     }
 
     // ===================================================================================
@@ -206,11 +211,21 @@ public class Step01VariableTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * What string is daddy variable at the methods end? <br>
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_variable_yourExercise() {
         // write your code here
+        String daddy = "Corona";
+        String question = "Who's your daddy ?\n It's ";
+        String result = helpYourExercise(daddy, question);
+        log(result); //your answer? => It's Corona fake
+        log(question + daddy); // your answer? => It's Corona
+    }
+    private String helpYourExercise(String daddy, String question) {
+        //daddy.concat(" fake"); return value: It's Corona
+        daddy = daddy.concat(" fake"); //return value: It's Corona fake
+        return question + daddy;
     }
 }
