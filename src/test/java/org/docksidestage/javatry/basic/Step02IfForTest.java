@@ -161,6 +161,16 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> stageListContainA = new ArrayList<>();
+        for (String stage : stageList) {
+            if (stage.contains("a")) {
+                stageListContainA.add(stage);
+            }
+        }
+        for (String stage : stageListContainA) {
+            log(stage);
+        }
     }
 
     // ===================================================================================
@@ -182,7 +192,7 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // should be same as before-fix
+        log(sea); // should be same as before-fix hangar
     }
 
     /**
