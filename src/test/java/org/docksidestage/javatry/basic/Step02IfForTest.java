@@ -183,15 +183,19 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList();
         String sea = null;
-        for (String stage : stageList) {
+        List<String> tempStageList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        stageList.forEach(stage -> {
             if (stage.startsWith("br")) {
-                continue;
+                return;
             }
-            sea = stage;
-            if (stage.contains("ga")) {
-                break;
+            tempStageList.add(0,stage);
+            if (stage.contains("ga") && sb.length()==0) {
+                sb.append(tempStageList.get(0));
             }
-        }
+        });
+        sea = sb.length()>0 ? sb.toString() : tempStageList.get(0).toString();
+        //if there is no stage contain "ga", return the last sea value was assigned
         log(sea); // should be same as before-fix hangar
     }
 
@@ -201,12 +205,23 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * find the element that start with a character behind 'd' and end with a character before 'o'
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
         // write your code here
+        List<String> stageList = fullCoverTestList();
+        String sea = null;
+        List<String> tempStageList = new ArrayList<>();
+
+        stageList.forEach(stage -> {
+            if (stage.charAt(0) >= 'd' && stage.charAt(stage.length()-1)<= 'o') {
+                tempStageList.add(stage);
+            }
+        });
+
+        log(tempStageList); // should be same as before-fix hangar
     }
 
     // ===================================================================================
@@ -218,6 +233,16 @@ public class Step02IfForTest extends PlainTestCase {
         stageList.add("dockside");
         stageList.add("hangar");
         stageList.add("magiclamp");
+        return stageList;
+    }
+
+    private List<String> fullCoverTestList() {
+        List<String> stageList = new ArrayList<>();
+        stageList.add("broadway");
+        stageList.add("dockside");
+        stageList.add("hangar");
+        stageList.add("magiclamp");
+        stageList.add("galileo");
         return stageList;
     }
 }
