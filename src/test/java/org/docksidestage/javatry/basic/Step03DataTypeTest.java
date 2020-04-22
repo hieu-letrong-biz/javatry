@@ -83,6 +83,7 @@ public class Step03DataTypeTest extends PlainTestCase {
             sea = 0;
         }
         log(sea); // your answer? => 2,cause (byte) amba =2
+        // TODO Do you knoq why dstore > piari is false? winkichanwi
     }
 
     // ===================================================================================
