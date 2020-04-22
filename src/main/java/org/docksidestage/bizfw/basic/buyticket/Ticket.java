@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author Hieu Le Trong (ヒエウ)
  */
 public class Ticket {
 

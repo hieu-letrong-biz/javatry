@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author Hieu Le Trong (ヒエウ)
  */
 public class TicketBooth {
 
@@ -48,9 +49,13 @@ public class TicketBooth {
         return ticket;
     }
 
-    public int buyTwoDayPassport(int handedMoney) {
+    public TicketBuyResult buyTwoDayPassport(int handedMoney) {
         buyPassport(handedMoney, TWO_DAY_PRICE, 2);
-        return handedMoney - TWO_DAY_PRICE;
+
+        int change = handedMoney - TWO_DAY_PRICE;
+        Ticket ticket = new Ticket(TWO_DAY_PRICE);
+        TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
+        return ticketBuyResult;
     }
 
     private void buyPassport(int handedMoney, int price, int quantity) {
