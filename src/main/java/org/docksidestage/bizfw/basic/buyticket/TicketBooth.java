@@ -43,38 +43,41 @@ public class TicketBooth {
     //                                                                          Buy Ticket
     //                                                                          ==========
     public void buyOneDayPassport(int handedMoney) {
-        if (quantity <= 0) {
-            throw new TicketSoldOutException("Sold out");
-        }
-        if (handedMoney >= ONE_DAY_PRICE) {
-            --quantity;
-        }
-        if (handedMoney < ONE_DAY_PRICE) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
-        }
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + ONE_DAY_PRICE;
-        } else {
-            salesProceeds = ONE_DAY_PRICE;
-        }
+        buyPassport(handedMoney, ONE_DAY_PRICE, 1);
     }
 
     public int buyTwoDayPassport(int handedMoney) {
-        if (quantity <= 1) {
+        buyPassport(handedMoney, TWO_DAY_PRICE, 2);
+        return handedMoney - TWO_DAY_PRICE;
+    }
+
+    private void buyPassport(int handedMoney, int price, int quantity) {
+        checkQuantity(quantity);
+        handleQuantity(handedMoney, price, quantity);
+        updateSalesProceeds(price);
+    }
+
+    private void checkQuantity(int quantity) {
+        if (this.quantity < quantity) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney >= TWO_DAY_PRICE) {
-             quantity -= 2;
+    }
+
+    private void handleQuantity(int handedMoney, int price, int quantity) {
+        if (handedMoney >= price) {
+            this.quantity -= quantity;
         }
-        if (handedMoney < TWO_DAY_PRICE) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + TWO_DAY_PRICE;
+    }
+
+    private void updateSalesProceeds(int price) {
+        if (this.salesProceeds != null) {
+            this.salesProceeds = this.salesProceeds + price;
         } else {
-            salesProceeds = TWO_DAY_PRICE;
+            this.salesProceeds = price;
         }
-        return handedMoney - TWO_DAY_PRICE;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
