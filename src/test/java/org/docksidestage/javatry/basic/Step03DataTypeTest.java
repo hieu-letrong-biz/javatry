@@ -69,12 +69,12 @@ public class Step03DataTypeTest extends PlainTestCase {
         float dstore = 2147483647.1f;
         double amba = 2.3d;
         char miraco = 'a';
-        boolean dohotel = miraco == 'a';
+        boolean dohotel = miraco == 'a'; // dohotel = true
         if (dohotel && dstore >= piari) {
             bonvo = sea; //127L
             land = (short) bonvo; //127
             bonvo = piari; //2147483647
-            sea = (byte) land; //127
+            sea = (byte) land; //127, cause by land > max value of byte
             if (amba == 2.3D) {
                 sea = (byte) amba;
             }
@@ -82,7 +82,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         if (dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 2 = (byte) amba
+        log(sea); // your answer? => 2,cause (byte) amba =2
     }
 
     // ===================================================================================
@@ -92,7 +92,7 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
 
     private static class St3ImmutableStage {
