@@ -196,6 +196,7 @@ public class Step02IfForTest extends PlainTestCase {
         });
         sea = sb.length()>0 ? sb.toString() : tempStageList.get(0).toString();
         //if there is no stage contain "ga", return the last sea value was assigned
+        // NOTE ここの考慮素晴らしかった、特に質問では言っていない部分は自分考えてエラーパターン考えた上で実装しましょう winkichanwi
         log(sea); // should be same as before-fix hangar
     }
 
