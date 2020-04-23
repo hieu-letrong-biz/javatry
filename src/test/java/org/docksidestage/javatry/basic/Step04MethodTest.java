@@ -161,6 +161,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     // write methods here
+    // TODO [発展] str が null だった時も考慮して実装してみましょう！ by subaru (2020/04/23)
     private String replaceAtoB(String str) {
         return str.replace("A", "B");
     }
