@@ -129,7 +129,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    // TODO hieu クラス内で再利用するだけのメソッドであれば、privateにしましょう by jflute (2020/04/23)
+    // TODO hieu そして、getは曖昧な動詞なので、もう少し具体的な意味が付けられるときは、具体的な動詞を使いましょう by jflute (2020/04/23)
+    // 例えば... deriveQuantityType(), convertToQuantityType(), findQuantityType(), prepareQuantityType() などなど。
     public QuantityType getQuantityType(String ticketType) {
+        // TODO hieu せっかく TicketType という enum があるのに、case "ThreeDayTicket" というように文字列をハードコードしているのはもったいない by jflute (2020/04/23)
+        // （TicketTypeオブジェクトのまま判定したいですね）
         switch (ticketType) {
         case "ThreeDayTicket":
             return threeDayQuantity;
@@ -142,6 +147,7 @@ public class TicketBooth {
         }
     }
 
+    // TODO hieu このgetメソッドは、誰かも使われてない？ (引数で受けとったquantityTypeのgetを呼び出しているだけなのであまり意味も無さそうだけど...) by jflute (2020/04/23)
     public int getQuantity(QuantityType quantityType) {
         return quantityType.getStock();
     }
