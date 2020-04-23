@@ -26,6 +26,7 @@ public class TicketBooth {
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    // TODO hieu unusedの警告が出ています (たぶん、途中から要らなくなったんだと思いますが^^) by jflute (2020/04/23)
     private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
@@ -56,11 +57,15 @@ public class TicketBooth {
         Ticket ticket = new PluralDayTicket(numberOfDay);
         int change = handedMoney - ticket.getDisplayPrice();
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
+        // TODO hieu [質問]引数のquantityが1固定ですが、これは何か意味がありますか？ by jflute (2020/04/23)
         buyPassport(handedMoney, ticket.getDisplayPrice(), 1);
         return ticketBuyResult;
     }
 
+    // TODO hieu Slackのtipsスレッドで書きましたが、doBuyPassport() にしてみましょう by jflute (2020/04/23)
+    // IntelliJ の Rename 機能を使うと良いです
     private void buyPassport(int handedMoney, int price, int quantity) {
+        // TODO hieu [いいね] 意味のある単位で綺麗にprivateメソッドに切り出されていてGoodです！ by jflute (2020/04/23)
         checkQuantity(quantity);
         handleQuantity(handedMoney, price, quantity);
         updateSalesProceeds(price);

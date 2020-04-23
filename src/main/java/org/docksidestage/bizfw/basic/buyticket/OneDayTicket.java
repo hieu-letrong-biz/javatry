@@ -16,6 +16,8 @@ public class OneDayTicket implements Ticket {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    // TODO hieu finalが付けられるインスタンス変数には、できるだけ付けていきましょう by jflute (2020/04/23)
+    // その方が、安全だし、読む方も「この値は、変わらないんだ」と判断が早くなります
     private int displayPrice;
     private boolean alreadyIn;
     private String type;
