@@ -23,8 +23,8 @@ public interface Ticket {
 
     //NOTE change Ticket class to interface, define doInPark(), getDisplayPrice() in it
     void doInPark();
-    int getDisplayPrice();
     boolean isAlreadyIn();
     String getType();
+    int getDisplayPrice();
     int getRemainDays();
 }

@@ -16,19 +16,17 @@ public class OneDayTicket implements Ticket {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO hieu finalが付けられるインスタンス変数には、できるだけ付けていきましょう by jflute (2020/04/23)
-    // その方が、安全だし、読む方も「この値は、変わらないんだ」と判断が早くなります
-    private int displayPrice;
+    // TODO done hieu finalが付けられるインスタンス変数には、できるだけ付けていきましょう by jflute (2020/04/23)
+    // done その方が、安全だし、読む方も「この値は、変わらないんだ」と判断が早くなります
+    private final int displayPrice = ONE_DAY_PRICE;
+    private final String type = ONE_DAY_TYPE;
     private boolean alreadyIn;
-    private String type;
     private int remainDays;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public OneDayTicket() {
-        this.displayPrice = ONE_DAY_PRICE;
-        this.type = ONE_DAY_TYPE;
         this.remainDays = ONE_DAY;
     }
 
