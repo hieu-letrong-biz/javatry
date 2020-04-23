@@ -22,6 +22,7 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    // TODO hieu ここも、Resultを書き換える必要があることはほとんどないと思うので、setは無しでもいいかなと by jflute (2020/04/23)
     public Ticket getTicket() {
         return this.ticket;
     }

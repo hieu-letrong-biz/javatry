@@ -25,6 +25,7 @@ public class TicketBooth {
     //                                                                          Definition
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
+    // TODO hieu unusedですよー by jflute (2020/04/23)
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     // done hieu unusedの警告が出ています (たぶん、途中から要らなくなったんだと思いますが^^) by jflute (2020/04/23)
     // 　IntellIJのProblems表示している機能を見つけません、、＞”＜
@@ -67,6 +68,9 @@ public class TicketBooth {
         // というように、numberOfDay をそのまま指定すると良いんじゃないかと思いました。
         // NOTE HIEU I've fixed some logic
 
+        // TODO hieu PluralDayTicket の Constructor の中で、ticketType(enum) を判断しているけど... by jflute (2020/04/23)
+        // あまりあちらこちらに switch 文があるよりは、TicketBooth に集まってたほうが修正のときに漏れが少ないかなと思います。
+        // （PluralDayTicketは、単純に TicketType(enum) を受け取るだけ）
         Ticket ticket = new PluralDayTicket(numberOfDay);
         Quantity anyDayQuantity = initQuantity(ticket.getTicketType());
         doBuyPassport(handedMoney, ticket.getDisplayPrice(), anyDayQuantity);

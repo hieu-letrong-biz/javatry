@@ -44,6 +44,8 @@ public class PluralDayTicket implements Ticket {
     }
 
     public TicketType initTicketType(int numberOfDay) {
+        // TODO hieu TicketType自体が remainDays を持っているので、「それと numberOfDay を比較して探せば」switchが要らなくなります by jflute (2020/04/23)
+        // そうすれば、SixDayやSevenDayが増えても、修正が不要になります。
         switch (numberOfDay) {
         case THREE_DAY:
             return TicketType.ThreeDayTicket;
