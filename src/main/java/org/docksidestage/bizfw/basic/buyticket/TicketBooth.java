@@ -31,11 +31,11 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private QuantityType oneDayQuantity = new QuantityType(MAX_QUANTITY);
-    private QuantityType twoDayQuantity = new QuantityType(MAX_QUANTITY);
-    private QuantityType threeDayQuantity = new QuantityType(MAX_QUANTITY);
-    private QuantityType fourDayQuantity = new QuantityType(MAX_QUANTITY);
-    private QuantityType fiveDayQuantity = new QuantityType(MAX_QUANTITY);
+    private Quantity oneDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity twoDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity threeDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity fourDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity fiveDayQuantity = new Quantity(MAX_QUANTITY);
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -68,7 +68,7 @@ public class TicketBooth {
         // NOTE HIEU I've fixed some logic
 
         Ticket ticket = new PluralDayTicket(numberOfDay);
-        QuantityType anyDayQuantity = getQuantityType(ticket.getTicketType().name());
+        Quantity anyDayQuantity = initQuantity(ticket.getTicketType());
         doBuyPassport(handedMoney, ticket.getDisplayPrice(), anyDayQuantity);
 
         int change = handedMoney - ticket.getDisplayPrice();
@@ -78,22 +78,22 @@ public class TicketBooth {
     // done hieu Slackのtipsスレッドで書きましたが、doBuyPassport() にしてみましょう by jflute (2020/04/23)
     // IntelliJ の Rename 機能を使うと良いです
     // オススメありがとうございます〜！
-    private void doBuyPassport(int handedMoney, int price, QuantityType quantityType) {
+    private void doBuyPassport(int handedMoney, int price, Quantity quantity) {
         // done hieu [いいね] 意味のある単位で綺麗にprivateメソッドに切り出されていてGoodです！ by jflute (2020/04/23)
-        checkQuantity(quantityType);
-        handleQuantity(handedMoney, price, quantityType);
+        checkQuantity(quantity);
+        handleQuantity(handedMoney, price, quantity);
         updateSalesProceeds(price);
     }
 
-    private void checkQuantity(QuantityType quantityType) {
-        if (quantityType.getStock() <= 0) {
+    private void checkQuantity(Quantity quantity) {
+        if (quantity.getValue() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
     }
 
-    private void handleQuantity(int handedMoney, int price, QuantityType quantityType) {
+    private void handleQuantity(int handedMoney, int price, Quantity quantity) {
         if (handedMoney >= price) {
-            quantityType.decreaseStock();
+            quantity.decreaseValue();
         }
         if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
@@ -129,32 +129,30 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    // TODO hieu クラス内で再利用するだけのメソッドであれば、privateにしましょう by jflute (2020/04/23)
-    // TODO hieu そして、getは曖昧な動詞なので、もう少し具体的な意味が付けられるときは、具体的な動詞を使いましょう by jflute (2020/04/23)
+    // done hieu クラス内で再利用するだけのメソッドであれば、privateにしましょう by jflute (2020/04/23)
+    // done hieu そして、getは曖昧な動詞なので、もう少し具体的な意味が付けられるときは、具体的な動詞を使いましょう by jflute (2020/04/23)
     // 例えば... deriveQuantityType(), convertToQuantityType(), findQuantityType(), prepareQuantityType() などなど。
-    public QuantityType getQuantityType(String ticketType) {
-        // TODO hieu せっかく TicketType という enum があるのに、case "ThreeDayTicket" というように文字列をハードコードしているのはもったいない by jflute (2020/04/23)
+    private Quantity initQuantity(TicketType ticketType) {
+        // done hieu せっかく TicketType という enum があるのに、case "ThreeDayTicket" というように文字列をハードコードしているのはもったいない by jflute (2020/04/23)
         // （TicketTypeオブジェクトのまま判定したいですね）
         switch (ticketType) {
-        case "ThreeDayTicket":
+        case ThreeDayTicket:
             return threeDayQuantity;
-        case "FourDayTicket":
+        case FourDayTicket:
             return fourDayQuantity;
-        case "FiveDayTicket":
+        case FiveDayTicket:
             return fiveDayQuantity;
         default:
             return twoDayQuantity;
         }
     }
 
-    // TODO hieu このgetメソッドは、誰かも使われてない？ (引数で受けとったquantityTypeのgetを呼び出しているだけなのであまり意味も無さそうだけど...) by jflute (2020/04/23)
-    public int getQuantity(QuantityType quantityType) {
-        return quantityType.getStock();
-    }
+    // done hieu このgetメソッドは、誰かも使われてない？ (引数で受けとったquantityTypeのgetを呼び出しているだけなのであまり意味も無さそうだけど...) by jflute (2020/04/23)
+    //消しました
 
     //NOTE Overload for previous test: E.g test_class_howToUse_basic
     public int getQuantity() {
-        return oneDayQuantity.getStock();
+        return oneDayQuantity.getValue();
     }
 
     public Integer getSalesProceeds() {

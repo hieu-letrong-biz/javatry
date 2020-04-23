@@ -2,7 +2,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 // done hieu javadocをお願いしますー by jflute (2020/04/23)
 // Q: クラスなら、どんな情報をjavadocに書いた方がいいでしょうか？調べてよくわかんないので、教えてもらえると幸いです！
-// TODO hieu [返事] まずは、タイトル・概要 (overview) ですね。例えば... by jflute (2020/04/23)
+// done hieu [返事] まずは、タイトル・概要 (overview) ですね。例えば... by jflute (2020/04/23)
 //
 // /**
 //  * チケットの種類 (1Dayパスワード、2Dayパスワードなど)
@@ -13,8 +13,9 @@ package org.docksidestage.bizfw.basic.buyticket;
 // このくらい小さなクラスであれば、あまり特記事項はないかもしれませんが。
 
 /**
- * @author hieu.letrong
- * @class TicketType
+ * TickeType
+ * For defining Ticket's type
+ * @author hieu.letrong (2020/04/23)
  */
 public enum TicketType {
     // done hieu OneDayの情報も、TicketTypeに入ってたほうが良いですね by jflute (2020/04/23)
@@ -25,10 +26,10 @@ public enum TicketType {
     FourDayTicket("FourDayTicket",22400,4),
     FiveDayTicket("FiveDayTicket",26000,5);
 
-    // TODO hieu ここも final を付けてしまいましょう (Immutableに) by jflute (2020/04/23)
-    private String type;
-    private int price;
-    private int remainDays;
+    // done hieu ここも final を付けてしまいましょう (Immutableに) by jflute (2020/04/23)
+    private final String type;
+    private final int price;
+    private final int remainDays;
 
     TicketType(String type, int price, int remainDays) {
         this.type = type;
