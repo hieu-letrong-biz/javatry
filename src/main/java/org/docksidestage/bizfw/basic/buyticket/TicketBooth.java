@@ -26,7 +26,7 @@ public class TicketBooth {
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
-    // TODO done hieu unusedの警告が出ています (たぶん、途中から要らなくなったんだと思いますが^^) by jflute (2020/04/23)
+    // done hieu unusedの警告が出ています (たぶん、途中から要らなくなったんだと思いますが^^) by jflute (2020/04/23)
     // 　IntellIJのProblems表示している機能を見つけません、、＞”＜
     // ===================================================================================
     //                                                                           Attribute
@@ -48,6 +48,8 @@ public class TicketBooth {
 
         int change = handedMoney - ONE_DAY_PRICE;
         Ticket ticket = new OneDayTicket();
+        // TODO hieu 細かいですが、直接 return しちゃってOKですよ by jflute (2020/04/23)
+        //  e.g. return new TicketBuyResult(ticket, change);
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
         return ticketBuyResult;
     }
@@ -56,18 +58,21 @@ public class TicketBooth {
         Ticket ticket = new PluralDayTicket(numberOfDay);
         int change = handedMoney - ticket.getDisplayPrice();
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
-        // TODO hieu [質問]引数のquantityが1固定ですが、これは何か意味がありますか？ by jflute (2020/04/23)
+        // done hieu [質問]引数のquantityが1固定ですが、これは何か意味がありますか？ by jflute (2020/04/23)
         //  最初から誤解したので、1DayPassportは固定1になるし、2DayPassportは固定が2になるという状態です。
         //  消したほうがいいでしょうか？教えてもらえると幸いです！
+        // TODO hieu [返事]なるほど。checkQuantity()などで判定基準値として使われているようなので... by jflute (2020/04/23)
+        //  e.g. doBuyPassport(handedMoney, ticket.getDisplayPrice(), numberOfDay);
+        // というように、numberOfDay をそのまま指定すると良いんじゃないかと思いました。
         doBuyPassport(handedMoney, ticket.getDisplayPrice(), 1);
         return ticketBuyResult;
     }
 
-    // TODO done hieu Slackのtipsスレッドで書きましたが、doBuyPassport() にしてみましょう by jflute (2020/04/23)
+    // done hieu Slackのtipsスレッドで書きましたが、doBuyPassport() にしてみましょう by jflute (2020/04/23)
     // IntelliJ の Rename 機能を使うと良いです
     // オススメありがとうございます〜！
     private void doBuyPassport(int handedMoney, int price, int quantity) {
-        // TODO done hieu [いいね] 意味のある単位で綺麗にprivateメソッドに切り出されていてGoodです！ by jflute (2020/04/23)
+        // done hieu [いいね] 意味のある単位で綺麗にprivateメソッドに切り出されていてGoodです！ by jflute (2020/04/23)
         checkQuantity(quantity);
         handleQuantity(handedMoney, price, quantity);
         updateSalesProceeds(price);

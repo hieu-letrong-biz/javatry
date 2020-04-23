@@ -9,14 +9,15 @@ public class PluralDayTicket implements Ticket {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    // TODO done hieu TWO_DAY なのに7400円？ (TicketBoothのONE_DAYの値段と同じになっている) by jflute (2020/04/23)
+    // done hieu TWO_DAY なのに7400円？ (TicketBoothのONE_DAYの値段と同じになっている) by jflute (2020/04/23)
     //  fixed at TicketType file
+    // TODO hieu TWO_DAY が unused warning になっています (デフォルトが 2 だから？) by jflute (2020/04/23)
     private static final int TWO_DAY = 2;
     private static final int THREE_DAY = 3;
     private static final int FOUR_DAY = 4;
     private static final int FIVE_DAY = 5;
 
-    // TODO done hieu [Challenge] ENUMの中に、上の定数値を持つようにして、TwoDayの情報、FourDayの情報をまとめよう by jflute (2020/04/23)
+    // done hieu [Challenge] ENUMの中に、上の定数値を持つようにして、TwoDayの情報、FourDayの情報をまとめよう by jflute (2020/04/23)
     //  fixed at file TicketType.java
     // (enumはコンストラクタで受け取った値をインスタンス変数(属性)として保持することができます)
     // https://github.com/lastaflute/lastaflute-example-harbor/blob/master/src/main/java/org/docksidestage/mylasta/appcls/AppCDef.java#L38
@@ -33,7 +34,7 @@ public class PluralDayTicket implements Ticket {
     //                                                                         Constructor
     //                                                                         ===========
     public PluralDayTicket(int numberOfDay) {
-        // TODO done hieu Unsupported な numberOfDay (e.g. 3, 5) が来たときの対応があると良いです by jflute (2020/04/23)
+        // done hieu Unsupported な numberOfDay (e.g. 3, 5) が来たときの対応があると良いです by jflute (2020/04/23)
         //  fixed for more flexible code
         this.ticketType = initTicketType(numberOfDay);
         this.displayPrice = ticketType.getPrice();
@@ -82,9 +83,10 @@ public class PluralDayTicket implements Ticket {
         return alreadyIn;
     }
 
-    // TODO done hieu 文字列じゃなくても良いです (enum型をそのまま戻すでもOKです) by jflute (2020/04/23)
+    // done hieu 文字列じゃなくても良いです (enum型をそのまま戻すでもOKです) by jflute (2020/04/23)
     //  added getter return enum TicketType at line 93-95
     // 使う側のプログラムからしたら、文字列よりも、type-safeなenum型の方が嬉しいです
+    // TODO hieu interfaceに定義するメソッドの方を、TicketType getTicketType() にしてはどうでしょう？ by jflute (2020/04/23)
     @Override
     public String getType() {
         return ticketType.getType();
