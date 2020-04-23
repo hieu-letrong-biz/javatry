@@ -162,18 +162,15 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     // write methods here
-    // TODO done [発展] str が null だった時も考慮して実装してみましょう！ by subaru (2020/04/23)
-    // TODO  [comment] いいですね、ちなみに三項演算子にするとよりすっきりかけます。 by subaru (2020/04/23)
+    // done [発展] str が null だった時も考慮して実装してみましょう！ by subaru (2020/04/23)
+    // done  [comment] いいですね、ちなみに三項演算子にするとよりすっきりかけます。 by subaru (2020/04/23)
+    // In my opinion, it's hard to understand for readers when return a value with ternary condition ^^
     private String replaceAtoB(String str) {
-        if (str == null)
-            return "";
-        return str.replace("A", "B");
+        return str == null ? "" : str.replace("A", "B");
     }
 
     private String replaceCtoB(String str) {
-        if (str == null)
-            return "";
-        return str.replace("C", "B");
+        return str == null ? "" : str.replace("C", "B");
     }
 
     private String addPrefix(String prefix, String postfix) {
