@@ -111,7 +111,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         int money = 14000;
         //        int change = booth.buyTwoDayPassport(money);
-        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(money);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(money, 2);
         Integer sea = booth.getSalesProceeds() + twoDayPassportResult.getChange();
         log(sea); // should be same as money
         //14000, ok
@@ -160,7 +160,7 @@ public class Step05ClassTest extends PlainTestCase {
         //=> should declare attr Ticket ticket & int change
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney, 2);
         //NOTE return TicketBuyResult at buyTwodayPassport method
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
         int change = twoDayPassportResult.getChange();
@@ -176,7 +176,7 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney,2);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
         log(twoDayPassport.getType()); // TWO DAY TICKET => ok
 
@@ -209,12 +209,14 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney,2);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
         log("Ticket type: " + twoDayPassport.getType()); // TwoDayTicket => ok
-        log("Remain days can check in: " + twoDayPassport.getRemainDays()); //remain days for checkin = 2 => ok
+        log("Remain days can check in: " + twoDayPassport.getRemainDays());
+        //remain days for checkin = 2 => ok
         twoDayPassport.doInPark();
-        log("Remain days can check in: " + twoDayPassport.getRemainDays()); //remain days for checkin = 1 => ok
+        log("Remain days can check in: " + twoDayPassport.getRemainDays());
+        //remain days for checkin = 1 => ok
 
         TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
         Ticket oneDayPassport = oneDayPassportResult.getTicket();
@@ -228,6 +230,16 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 25000;
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney,4);
+        Ticket twoDayPassport = twoDayPassportResult.getTicket();
+        log("Ticket type: " + twoDayPassport.getType()); // FourDayTicket => ok
+        log("Remain days can check in: " + twoDayPassport.getRemainDays());
+        //remain days for checkin = 4 => ok
+        twoDayPassport.doInPark();
+        log("Remain days can check in: " + twoDayPassport.getRemainDays());
+        //remain days for checkin = 3 => ok
     }
 
     /**

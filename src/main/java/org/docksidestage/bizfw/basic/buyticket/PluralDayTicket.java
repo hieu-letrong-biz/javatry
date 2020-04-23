@@ -9,10 +9,13 @@ public class PluralDayTicket implements Ticket {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final int MAX_QUANTITY = 10;
     private static final int TWO_DAY_PRICE = 7400;
-    private static final String TYPE = "TwoDayTicket";
-    private static int REMAIN_DAYS = 2;
+    private static final int FOUR_DAY_PRICE = 22400;
+    private static int TWO_DAY = 2;
+    private static int FOUR_DAY = 4;
+    private static enum TYPE {
+        TwoDayTicket,FourDayTicket
+    }
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -24,10 +27,17 @@ public class PluralDayTicket implements Ticket {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public PluralDayTicket() {
-        this.displayPrice = TWO_DAY_PRICE;
-        this.type = TYPE;
-        this.remainDays = REMAIN_DAYS;
+    public PluralDayTicket(int numberOfDay) {
+        if (numberOfDay == FOUR_DAY) {
+            this.displayPrice = FOUR_DAY_PRICE;
+            this.type = String.valueOf(TYPE.FourDayTicket);
+            this.remainDays = FOUR_DAY;
+        }
+        else if (numberOfDay == TWO_DAY) {
+            this.displayPrice = TWO_DAY_PRICE;
+            this.type = String.valueOf(TYPE.TwoDayTicket);
+            this.remainDays = TWO_DAY;
+        }
     }
 
     // ===================================================================================

@@ -9,10 +9,9 @@ public class OneDayTicket implements Ticket {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400;
     private static final String ONE_DAY_TYPE = "OneDayTicket";
-    private static int REMAIN_DAYS = 1;
+    private static int ONE_DAY = 1;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -28,7 +27,7 @@ public class OneDayTicket implements Ticket {
     public OneDayTicket() {
         this.displayPrice = ONE_DAY_PRICE;
         this.type = ONE_DAY_TYPE;
-        this.remainDays = REMAIN_DAYS;
+        this.remainDays = ONE_DAY;
     }
 
     // ===================================================================================

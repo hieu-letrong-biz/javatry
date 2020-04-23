@@ -52,12 +52,11 @@ public class TicketBooth {
         return ticketBuyResult;
     }
 
-    public TicketBuyResult buyTwoDayPassport(int handedMoney) {
-        buyPassport(handedMoney, TWO_DAY_PRICE, 2);
-
-        int change = handedMoney - TWO_DAY_PRICE;
-        Ticket ticket = new PluralDayTicket();
+    public TicketBuyResult buyPluralDayPassport(int handedMoney, int numberOfDay) {
+        Ticket ticket = new PluralDayTicket(numberOfDay);
+        int change = handedMoney - ticket.getDisplayPrice();
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
+        buyPassport(handedMoney, ticket.getDisplayPrice(), 1);
         return ticketBuyResult;
     }
 
