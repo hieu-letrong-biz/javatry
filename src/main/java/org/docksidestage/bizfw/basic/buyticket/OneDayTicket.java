@@ -10,7 +10,6 @@ public class OneDayTicket implements Ticket {
     //                                                                          Definition
     //                                                                          ==========
     private static final int ONE_DAY_PRICE = 7400;
-    private static final String ONE_DAY_TYPE = "OneDayTicket";
     private static int ONE_DAY = 1;
 
     // ===================================================================================
@@ -18,15 +17,16 @@ public class OneDayTicket implements Ticket {
     //                                                                           =========
     // done hieu finalが付けられるインスタンス変数には、できるだけ付けていきましょう by jflute (2020/04/23)
     // done その方が、安全だし、読む方も「この値は、変わらないんだ」と判断が早くなります
-    private final int displayPrice = ONE_DAY_PRICE;
-    private final String type = ONE_DAY_TYPE;
+    private final int displayPrice = TicketType.OneDayTicket.getPrice();
     private boolean alreadyIn;
+    private TicketType ticketType;
     private int remainDays;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public OneDayTicket() {
+        ticketType = TicketType.OneDayTicket;
         this.remainDays = ONE_DAY;
     }
 
@@ -56,8 +56,8 @@ public class OneDayTicket implements Ticket {
     }
 
     @Override
-    public String getType() {
-        return type;
+    public TicketType getTicketType() {
+        return ticketType;
     }
 
     @Override

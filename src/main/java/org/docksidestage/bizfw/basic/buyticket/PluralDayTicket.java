@@ -11,8 +11,10 @@ public class PluralDayTicket implements Ticket {
     //                                                                          ==========
     // done hieu TWO_DAY なのに7400円？ (TicketBoothのONE_DAYの値段と同じになっている) by jflute (2020/04/23)
     //  fixed at TicketType file
-    // TODO hieu TWO_DAY が unused warning になっています (デフォルトが 2 だから？) by jflute (2020/04/23)
-    private static final int TWO_DAY = 2;
+    // done hieu TWO_DAY が unused warning になっています (デフォルトが 2 だから？) by jflute (2020/04/23)
+    // そうなんですね！自分の考えですが、switchを使うことが好きじゃないです、、
+    // しばしばプログラムのフローとデータが変更させたということです！
+    // 仕方ないので、一旦消します！
     private static final int THREE_DAY = 3;
     private static final int FOUR_DAY = 4;
     private static final int FIVE_DAY = 5;
@@ -86,16 +88,13 @@ public class PluralDayTicket implements Ticket {
     // done hieu 文字列じゃなくても良いです (enum型をそのまま戻すでもOKです) by jflute (2020/04/23)
     //  added getter return enum TicketType at line 93-95
     // 使う側のプログラムからしたら、文字列よりも、type-safeなenum型の方が嬉しいです
-    // TODO hieu interfaceに定義するメソッドの方を、TicketType getTicketType() にしてはどうでしょう？ by jflute (2020/04/23)
+    // done hieu interfaceに定義するメソッドの方を、TicketType getTicketType() にしてはどうでしょう？ by jflute (2020/04/23)
     @Override
-    public String getType() {
-        return ticketType.getType();
-    }
-
     public TicketType getTicketType() {
         return ticketType;
     }
 
+    @Override
     public int getRemainDays() {
         return remainDays;
     }

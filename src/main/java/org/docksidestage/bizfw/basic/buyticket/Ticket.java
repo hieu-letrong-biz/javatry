@@ -20,11 +20,10 @@ package org.docksidestage.bizfw.basic.buyticket;
  * @author Hieu Le Trong (ヒエウ)
  */
 public interface Ticket {
-
     //NOTE change Ticket class to interface, define doInPark(), getDisplayPrice() in it
     void doInPark();
     boolean isAlreadyIn();
-    String getType();
     int getDisplayPrice();
     int getRemainDays();
+    TicketType getTicketType();
 }

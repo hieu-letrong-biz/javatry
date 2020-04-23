@@ -31,7 +31,11 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int quantity = MAX_QUANTITY;
+    private QuantityType oneDayQuantity = new QuantityType(MAX_QUANTITY);
+    private QuantityType twoDayQuantity = new QuantityType(MAX_QUANTITY);
+    private QuantityType threeDayQuantity = new QuantityType(MAX_QUANTITY);
+    private QuantityType fourDayQuantity = new QuantityType(MAX_QUANTITY);
+    private QuantityType fiveDayQuantity = new QuantityType(MAX_QUANTITY);
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -44,49 +48,52 @@ public class TicketBooth {
     //                                                                          Buy Ticket
     //                                                                          ==========
     public TicketBuyResult buyOneDayPassport(int handedMoney) {
-        doBuyPassport(handedMoney, ONE_DAY_PRICE, 1);
-
-        int change = handedMoney - ONE_DAY_PRICE;
-        Ticket ticket = new OneDayTicket();
-        // TODO hieu 細かいですが、直接 return しちゃってOKですよ by jflute (2020/04/23)
+        // done hieu 細かいですが、直接 return しちゃってOKですよ by jflute (2020/04/23)
         //  e.g. return new TicketBuyResult(ticket, change);
-        TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
-        return ticketBuyResult;
+
+        Ticket ticket = new OneDayTicket();
+        doBuyPassport(handedMoney, ticket.getDisplayPrice(), oneDayQuantity);
+
+        int change = handedMoney - ticket.getDisplayPrice();
+        return new TicketBuyResult(ticket, change);
     }
 
     public TicketBuyResult buyPluralDayPassport(int handedMoney, int numberOfDay) {
-        Ticket ticket = new PluralDayTicket(numberOfDay);
-        int change = handedMoney - ticket.getDisplayPrice();
-        TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
         // done hieu [質問]引数のquantityが1固定ですが、これは何か意味がありますか？ by jflute (2020/04/23)
         //  最初から誤解したので、1DayPassportは固定1になるし、2DayPassportは固定が2になるという状態です。
         //  消したほうがいいでしょうか？教えてもらえると幸いです！
-        // TODO hieu [返事]なるほど。checkQuantity()などで判定基準値として使われているようなので... by jflute (2020/04/23)
+        // done hieu [返事]なるほど。checkQuantity()などで判定基準値として使われているようなので... by jflute (2020/04/23)
         //  e.g. doBuyPassport(handedMoney, ticket.getDisplayPrice(), numberOfDay);
         // というように、numberOfDay をそのまま指定すると良いんじゃないかと思いました。
-        doBuyPassport(handedMoney, ticket.getDisplayPrice(), 1);
-        return ticketBuyResult;
+        // NOTE HIEU I've fixed some logic
+
+        Ticket ticket = new PluralDayTicket(numberOfDay);
+        QuantityType anyDayQuantity = getQuantityType(ticket.getTicketType().name());
+        doBuyPassport(handedMoney, ticket.getDisplayPrice(), anyDayQuantity);
+
+        int change = handedMoney - ticket.getDisplayPrice();
+        return new TicketBuyResult(ticket, change);
     }
 
     // done hieu Slackのtipsスレッドで書きましたが、doBuyPassport() にしてみましょう by jflute (2020/04/23)
     // IntelliJ の Rename 機能を使うと良いです
     // オススメありがとうございます〜！
-    private void doBuyPassport(int handedMoney, int price, int quantity) {
+    private void doBuyPassport(int handedMoney, int price, QuantityType quantityType) {
         // done hieu [いいね] 意味のある単位で綺麗にprivateメソッドに切り出されていてGoodです！ by jflute (2020/04/23)
-        checkQuantity(quantity);
-        handleQuantity(handedMoney, price, quantity);
+        checkQuantity(quantityType);
+        handleQuantity(handedMoney, price, quantityType);
         updateSalesProceeds(price);
     }
 
-    private void checkQuantity(int quantity) {
-        if (this.quantity < quantity) {
+    private void checkQuantity(QuantityType quantityType) {
+        if (quantityType.getStock() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
     }
 
-    private void handleQuantity(int handedMoney, int price, int quantity) {
+    private void handleQuantity(int handedMoney, int price, QuantityType quantityType) {
         if (handedMoney >= price) {
-            this.quantity -= quantity;
+            quantityType.decreaseStock();
         }
         if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
@@ -122,8 +129,26 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    public QuantityType getQuantityType(String ticketType) {
+        switch (ticketType) {
+        case "ThreeDayTicket":
+            return threeDayQuantity;
+        case "FourDayTicket":
+            return fourDayQuantity;
+        case "FiveDayTicket":
+            return fiveDayQuantity;
+        default:
+            return twoDayQuantity;
+        }
+    }
+
+    public int getQuantity(QuantityType quantityType) {
+        return quantityType.getStock();
+    }
+
+    //NOTE Overload for previous test: E.g test_class_howToUse_basic
     public int getQuantity() {
-        return quantity;
+        return oneDayQuantity.getStock();
     }
 
     public Integer getSalesProceeds() {

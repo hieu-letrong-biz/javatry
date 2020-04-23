@@ -176,13 +176,13 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney,2);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney, 2);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
-        log(twoDayPassport.getType()); // TWO DAY TICKET => ok
+        log(twoDayPassport.getTicketType()); // TWO DAY TICKET => ok
 
         TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
         Ticket oneDayPassport = oneDayPassportResult.getTicket();
-        log(oneDayPassport.getType()); // ONE DAY TICKET => ok
+        log(oneDayPassport.getTicketType()); // ONE DAY TICKET => ok
     }
 
     // ===================================================================================
@@ -209,9 +209,9 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney,2);
+        TicketBuyResult twoDayPassportResult = booth.buyPluralDayPassport(handedMoney, 2);
         Ticket twoDayPassport = twoDayPassportResult.getTicket();
-        log("Ticket type: " + twoDayPassport.getType()); // TwoDayTicket => ok
+        log("Ticket type: " + twoDayPassport.getTicketType()); // TwoDayTicket => ok
         log("Remain days can check in: " + twoDayPassport.getRemainDays());
         //remain days for checkin = 2 => ok
         twoDayPassport.doInPark();
@@ -220,7 +220,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
         Ticket oneDayPassport = oneDayPassportResult.getTicket();
-        log("Ticket type: " + oneDayPassport.getType()); // OneDayTicket => ok
+        log("Ticket type: " + oneDayPassport.getTicketType()); // OneDayTicket => ok
         log("Remain days can check in: " + oneDayPassport.getRemainDays()); //remain days for checkin = 2 => ok
     }
 
@@ -232,9 +232,9 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
         TicketBooth booth = new TicketBooth();
         int handedMoney = 30000;
-        TicketBuyResult anyDayPassportResult = booth.buyPluralDayPassport(handedMoney,5);
+        TicketBuyResult anyDayPassportResult = booth.buyPluralDayPassport(handedMoney, 5);
         Ticket anyDayPassport = anyDayPassportResult.getTicket();
-        log("Ticket type: " + anyDayPassport.getType()); // FourDayTicket => ok
+        log("Ticket type: " + anyDayPassport.getTicketType()); // FiveDayTicket => ok
         log("Remain days can check in: " + anyDayPassport.getRemainDays());
         //remain days for checkin = 4 => ok
         anyDayPassport.doInPark();
@@ -247,6 +247,15 @@ public class Step05ClassTest extends PlainTestCase {
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
      */
     public void test_class_moreFix_yourRefactoring() {
-        // write confirmation code here
+        TicketBooth booth = new TicketBooth();
+        // NOTE You can test with any TicketType by edit the numberOfDay
+        // Actually I can refactor buyPlural & buyOne to one method only but its seems like unnecessary :D
+        int handedMoney = 50000;
+        TicketBuyResult anyDayPassportResult = booth.buyPluralDayPassport(handedMoney, 2);
+        Ticket anyDayPassport = anyDayPassportResult.getTicket();
+
+        log("\n" + anyDayPassport.getTicketType() + "\n" +
+                "お預り: " + handedMoney + "\n" +
+                "お釣り: " + anyDayPassportResult.getChange());
     }
 }

@@ -84,8 +84,8 @@ public class Step03DataTypeTest extends PlainTestCase {
             sea = 0;
         }
         log(sea); // your answer? => 2,cause (byte) amba =2
-        // TODO done Do you knoq why dstore > piari is false? winkichanwi
-        // TODO answer. Comparing a float with integer is internally taken to be
+        //  done Do you knoq why dstore > piari is false? winkichanwi
+        //  answer. Comparing a float with integer is internally taken to be
         //  comparison between two floats (int will be casted to float).
     }
 
