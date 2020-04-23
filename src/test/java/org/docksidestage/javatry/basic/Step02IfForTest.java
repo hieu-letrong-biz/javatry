@@ -213,7 +213,7 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_yourExercise() {
         // write your code here
         List<String> stageList = fullCoverTestList();
-        // TODO done letrong unusedの変数があります（問題とも関係がないのであれば削除しましょう、警告を見逃さないように） by jflute (2020/04/23)
+        // done letrong unusedの変数があります（問題とも関係がないのであれば削除しましょう、警告を見逃さないように） by jflute (2020/04/23)
         List<String> tempStageList = new ArrayList<>();
 
         stageList.forEach(stage -> {
