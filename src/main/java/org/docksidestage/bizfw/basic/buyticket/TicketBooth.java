@@ -47,7 +47,7 @@ public class TicketBooth {
         buyPassport(handedMoney, ONE_DAY_PRICE, 1);
 
         int change = handedMoney - ONE_DAY_PRICE;
-        Ticket ticket = new Ticket(ONE_DAY_PRICE);
+        Ticket ticket = new OneDayTicket();
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
         return ticketBuyResult;
     }
@@ -56,7 +56,7 @@ public class TicketBooth {
         buyPassport(handedMoney, TWO_DAY_PRICE, 2);
 
         int change = handedMoney - TWO_DAY_PRICE;
-        Ticket ticket = new Ticket(TWO_DAY_PRICE);
+        Ticket ticket = new PluralDayTicket();
         TicketBuyResult ticketBuyResult = new TicketBuyResult(ticket, change);
         return ticketBuyResult;
     }

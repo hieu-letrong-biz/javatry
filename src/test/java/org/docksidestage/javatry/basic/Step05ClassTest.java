@@ -204,8 +204,22 @@ public class Step05ClassTest extends PlainTestCase {
      * o 複数日用のクラスでは、決められた回数だけ doInPark() できるように
      * </pre>
      */
+    //NOTE change Ticket class to interface, define doInPark(), getDisplayPrice() in it
     public void test_class_moreFix_useInterface() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 20000;
+        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        Ticket twoDayPassport = twoDayPassportResult.getTicket();
+        log("Ticket type: " + twoDayPassport.getType()); // TwoDayTicket => ok
+        log("Remain days can check in: " + twoDayPassport.getRemainDays()); //remain days for checkin = 2 => ok
+        twoDayPassport.doInPark();
+        log("Remain days can check in: " + twoDayPassport.getRemainDays()); //remain days for checkin = 1 => ok
+
+        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
+        Ticket oneDayPassport = oneDayPassportResult.getTicket();
+        log("Ticket type: " + oneDayPassport.getType()); // OneDayTicket => ok
+        log("Remain days can check in: " + oneDayPassport.getRemainDays()); //remain days for checkin = 2 => ok
     }
 
     /**
