@@ -42,6 +42,7 @@ public class Step23SorterTest extends PlainTestCase {
 
         // act
         List<Word> result = new WordSorter().sort(input);
+        // Sort changes languages
 
         // assert
         for (int i = 0; i < result.size(); i++) {
