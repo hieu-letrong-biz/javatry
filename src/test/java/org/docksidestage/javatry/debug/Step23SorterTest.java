@@ -26,7 +26,8 @@ public class Step23SorterTest extends PlainTestCase {
         // assert
         int rank = 0;
         for (Language language : languages) {
-            assertTrue(rank < language.rank);
+            assertTrue(rank <= language.rank);
+            // previousRank <= currentRank should be true
             rank = language.rank;
         }
     }
