@@ -110,7 +110,7 @@ public class Step21WordPoolTest extends PlainTestCase {
         Language expected = new LanguagePool().getLanguage("Japanese");
 
         List<Language> languages = pool.getLanguages();
-        
+
         assertEquals(expected.name, languages.get(0).name);
         assertEquals(expected.description, languages.get(0).description);
         assertEquals(expected.countries, languages.get(0).countries);

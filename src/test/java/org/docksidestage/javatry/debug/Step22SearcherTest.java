@@ -17,7 +17,7 @@ public class Step22SearcherTest extends PlainTestCase {
     public void test_iteratorSearch_found() {
         // act
         Word found = new IteratorSearcher().search("私");
-
+        log(found.getWord());
         // assert
         Assert.assertEquals("日本語", found.getLanguage().name);
         Assert.assertEquals("私", found.getWord());
