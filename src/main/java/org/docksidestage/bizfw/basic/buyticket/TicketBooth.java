@@ -25,8 +25,7 @@ public class TicketBooth {
     //                                                                          Definition
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
-    // TODO hieu unusedですよー by jflute (2020/04/23)
-    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    // done hieu unusedですよー by jflute (2020/04/23)
     // done hieu unusedの警告が出ています (たぶん、途中から要らなくなったんだと思いますが^^) by jflute (2020/04/23)
     // 　IntellIJのProblems表示している機能を見つけません、、＞”＜
     // ===================================================================================

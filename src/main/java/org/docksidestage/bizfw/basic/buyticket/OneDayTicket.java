@@ -9,8 +9,7 @@ public class OneDayTicket implements Ticket {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    // TODO hieu unusedですよー by jflute (2020/04/23)
-    private static final int ONE_DAY_PRICE = 7400;
+    // done hieu unusedですよー by jflute (2020/04/23)
     private static int ONE_DAY = 1;
 
     // ===================================================================================

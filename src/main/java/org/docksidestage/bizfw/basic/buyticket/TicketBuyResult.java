@@ -15,24 +15,18 @@ public class TicketBuyResult {
     //                                                                         Constructor
     //                                                                         ===========
     public TicketBuyResult(Ticket ticket, int change) {
-        setTicket(ticket);
-        setChange(change);
+        this.ticket = ticket;
+        this.change = change;
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    // TODO hieu ここも、Resultを書き換える必要があることはほとんどないと思うので、setは無しでもいいかなと by jflute (2020/04/23)
+    // done hieu ここも、Resultを書き換える必要があることはほとんどないと思うので、setは無しでもいいかなと by jflute (2020/04/23)
     public Ticket getTicket() {
         return this.ticket;
     }
     public int getChange() {
         return this.change;
-    }
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-    public void setChange(int change) {
-        this.change = change;
     }
 }
