@@ -28,6 +28,6 @@ public class Step22SearcherTest extends PlainTestCase {
     }
 
     public void test_linearSearch_notFound() {
-        assertException(IllegalArgumentException.class, () -> new LinearSearcher().search("君"));
+        assertException(IllegalArgumentException.class, () -> new LinearSearcher().search("hehe"));
     }
 }
