@@ -95,9 +95,10 @@ public class Step21WordPoolTest extends PlainTestCase {
 
         // act
         String result = pool.replace(created.getKey(), "くえ", "ばき");
-
+        log(created.getKey());
         // assert
         Word actual = pool.find(result);
+        log(actual);
         assertEquals("つばき", actual.getWord());
         assertEquals("日本語", actual.getLanguage().name);
         assertEquals(created.getKey(), pool.findId("つばき"));
