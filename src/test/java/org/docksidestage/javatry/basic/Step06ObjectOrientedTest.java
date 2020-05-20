@@ -169,6 +169,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [final process]
         //
         //saveBuyingHistory(booth, ticket);
+
+        /* Comment about object by hieu 20/5
+        Luckily instead of have to work with a lot of meaningless variables in application
+         we just have to consider it like real-world things.
+        */
     }
 
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
