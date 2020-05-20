@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -51,6 +52,16 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長い文字列は？)
      */
     public void test_length_findMax() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String)
+                .map(stringContent -> String.valueOf(stringContent))
+                .max(Comparator.comparingInt(String::length))
+                .orElse("*not found");
+        log(answer); // おるぐどっくさいどすてーじ
     }
 
     /**
