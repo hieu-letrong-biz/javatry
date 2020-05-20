@@ -213,9 +213,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Dog();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7. Same as previous, the dog has animal's activities
+        // In the previous example, bark() was imply called from child class (Dog)
+        // This time, it was directly called by parent class (Animal)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
