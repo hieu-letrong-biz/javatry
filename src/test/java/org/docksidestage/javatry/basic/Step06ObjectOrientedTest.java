@@ -324,7 +324,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeInterface() {
-        // your confirmation code here
+        Raven skyAnimal = new Raven();
+        skyAnimal.fly();
     }
 
     // ===================================================================================
