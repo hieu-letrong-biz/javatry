@@ -23,6 +23,10 @@ import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
+import org.docksidestage.javatry.basic.st6.os.St6Mac;
+import org.docksidestage.javatry.basic.st6.os.St6OldWindow;
+import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
+import org.docksidestage.javatry.basic.st6.os.St6Window;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -350,7 +354,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // your confirmation code here
+        String loginID = "guestID";
+        String relativePath = "/Document";
+
+        St6Mac mac = new St6Mac(loginID);
+        St6OperationSystem window = new St6Window(loginID);
+        St6OperationSystem oldWindow = new St6OldWindow(loginID);
+
+        log(mac.buildUserResourcePath(relativePath));
+        log(window.buildUserResourcePath(relativePath));
+        log(oldWindow.buildUserResourcePath(relativePath));
     }
 
     // ===================================================================================

@@ -16,22 +16,14 @@
 package org.docksidestage.javatry.basic.st6.os;
 
 /**
- * @author jflute
+ * @author jflute, hieu
  */
 public class St6OperationSystem {
-
-    // ===================================================================================
-    //                                                                          Definition
-    //                                                                          ==========
-    private static final String OS_TYPE_MAC = "Mac";
-    private static final String OS_TYPE_WINDOWS = "Windows";
-    private static final String OS_TYPE_OLD_WINDOWS = "OldWindows";
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     private final String loginId;
-    private String osType;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -51,26 +43,14 @@ public class St6OperationSystem {
     }
 
     protected String getFileSeparator() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/";
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
+        throw new IllegalStateException("Unknown osType");
     }
 
     protected String getUserDirectory() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Documents and Settigs/" + loginId;
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
+        throw new IllegalStateException("Unknown osType");
+    }
+
+    protected String getLoginId() {
+        return this.loginId;
     }
 }
