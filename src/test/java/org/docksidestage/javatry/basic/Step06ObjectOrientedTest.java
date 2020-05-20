@@ -17,7 +17,12 @@ package org.docksidestage.javatry.basic;
 
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-import org.docksidestage.bizfw.basic.objanimal.*;
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
+import org.docksidestage.bizfw.basic.objanimal.Cat;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Raven;
+import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
@@ -67,7 +72,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
             throw new IllegalStateException("Short money: handedMoney=" + handedMoney);
         }
         --quantity;
-        salesProceeds = (salesProceeds == null) ? oneDayPrice :  salesProceeds + oneDayPrice;
+        salesProceeds = (salesProceeds == null) ? oneDayPrice : salesProceeds + oneDayPrice;
 
         //
         // [ticket info]
@@ -133,6 +138,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // #fixme you if step05 has been finished, you can use this code by jflute (2019/06/15)
         // _/_/_/_/_/_/_/_/_/_/
+        // TODO hieu todoコメントが残っています。対応しましょう by jflute (2020/05/20)
         //TODO Commented to run Step05, fix later
         //Ticket ticket = booth.buyOneDayPassport(10000);
         booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
@@ -178,6 +184,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         */
     }
 
+    // TODO hieu unused の警告が出ています。使わないならこちらもコメントアウトか...どうにか対処しましょう by jflute (2020/05/20)
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
         if (ticket.isAlreadyIn()) {
             // only logging here (normally e.g. DB insert)
@@ -308,7 +315,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_polymorphism_interface_runnerImpl() {
         // your confirmation code here
         Animal spaceAnimal = new Dog();
-        log (spaceAnimal instanceof FastRunner);
+        log(spaceAnimal instanceof FastRunner);
     }
 
     // ===================================================================================
@@ -342,11 +349,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        St6MySql mySql= new St6MySql();
+        // TODO hieu 11:30にsubaruさんからライブコーディングがあったように、テンプレートメソッドパターン (Template Method Pattern) で実装してみましょう by jflute (2020/05/20)
+        // "int offset = pageSize * (pageNumber - 1)" の部分を再利用したいですね。
+        St6MySql mySql = new St6MySql();
         St6PostgreSql postgreSql = new St6PostgreSql();
 
-        log(mySql.buildPagingQuery(10,2));
-        log(postgreSql.buildPagingQuery(10,2));
+        log(mySql.buildPagingQuery(10, 2));
+        log(postgreSql.buildPagingQuery(10, 2));
     }
 
     /**
@@ -357,6 +366,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         String loginID = "guestID";
         String relativePath = "/Document";
 
+        // TODO hieu St6OperationSystem の getFileSeparator() などは、例外にするくらいなら「abstractメソッド」の方が良いですね by jflute (2020/05/20)
+        // （例外にするときもありますが、すべてのコンクリートクラスがオーバーライドしているので、「abstractメソッド」の方が適しています）
         St6Mac mac = new St6Mac(loginID);
         St6OperationSystem window = new St6Window(loginID);
         St6OperationSystem oldWindow = new St6OldWindow(loginID);
