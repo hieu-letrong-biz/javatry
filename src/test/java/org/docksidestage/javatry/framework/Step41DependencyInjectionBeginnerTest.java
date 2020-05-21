@@ -86,6 +86,19 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_first_and_second() {
         // your answer? => 
+        /**
+         * The difference is, I think the SecondAction is the more-details version of FirstAction
+         * Analyzed 3 methods callFriend(), wakeupMe() in Dog section and goToOffice() in Supercar section
+         * I realized that: currently we want to change the object in FirstAction (to become more specific)
+         * In details: Dog -> TooLazyDog, SupercarManufacturer's makesupercar method -> now defined in SupercarManufacturer class
+         * Cause things've changed, so we must write more longer code
+         *
+         * Result is SecondAction representing the state that
+         * the relationships between modules is become looser
+         * or
+         * High-level module is depends on low-level module (FirstAction)
+         * Low-level module is now depends on High-level module (Second Action)
+         */
         // and your confirmation code here freely
     }
 
