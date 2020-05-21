@@ -121,7 +121,11 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiFactoryMethodAction と NonDiIndividualFactoryAction の違いは？)
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
-        // your answer? => 
+        // your answer? =>
+        /**
+         * Initialize process now moved to another class (NonDiAnimalFactory vs NonDiIndividualFactoryAction)
+         * Each instance is created from it's class
+         */
         // and your confirmation code here freely
     }
 
