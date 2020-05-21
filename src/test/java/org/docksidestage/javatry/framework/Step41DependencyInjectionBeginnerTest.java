@@ -15,6 +15,12 @@
  */
 package org.docksidestage.javatry.framework;
 
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.supercar.SupercarDealer;
+import org.docksidestage.bizfw.di.container.SimpleDiContainer;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -56,7 +62,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
          *      2. Initialization of low-level modules will be performed by DI Container.
          *      -> Difference: will not be performed by high-level modules
          *
-         *      TODO [comment] Sometimes, JavaConfig is also used instead of xml on spring framework case by subaru (2020/05/21)
+         *      [comment] Sometimes, JavaConfig is also used instead of xml on spring framework case by subaru (2020/05/21)
          *      3. Which module attached to which interface will be configured in a particular file (XML as far as I know)
          *
          *      4. No need to create low-level module's instance in high-level module (Cuz its already there)
@@ -86,7 +92,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_first_and_second() {
         // your answer? => 
-        /**
+        /** (by hieu 21/05/2020)
          * The difference is, I think the SecondAction is the more-details version of FirstAction
          * Analyzed 3 methods callFriend(), wakeupMe() in Dog section and goToOffice() in Supercar section
          * I realized that: currently we want to change the object in FirstAction (to become more specific)
@@ -108,7 +114,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_second_and_FactoryMethod() {
         // your answer? =>
-        /**
+        /** (by hieu 21/05/2020)
          * Initialize process now moved to another function
          * The relationships between method are become looser
          * do() function now take less responsible for init() or create() works
@@ -122,7 +128,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
         // your answer? =>
-        /**
+        /** (by hieu 21/05/2020)
          * Initialize process now moved to another class (NonDiAnimalFactory vs NonDiIndividualFactoryAction)
          * Each instance is created from it's class
          */
@@ -137,8 +143,29 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
-        // your answer? => 
+        // your answer? =>
+        /**
+         * Dependencies is injected via setter or via DI Container
+         * (by hieu 21/05/2020)
+         */
         // and your confirmation code here freely
+        log("-----Using DI Accessor Action-----");
+        UsingDiAccessorAction accessorAction = new UsingDiAccessorAction();
+        accessorAction.setAnimal(new Dog());
+        accessorAction.setSupercarDealer(new SupercarDealer());
+        accessorAction.callFriend();
+
+        log("\n-----Using DI Simple DI Container Action-----");
+        SimpleDiContainer simpleDiContainer = SimpleDiContainer.getInstance(); // SimpleDiContainer is Singleton
+        simpleDiContainer.registerModule(componentMap -> {
+            componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+            componentMap.put(Animal.class, new Dog());
+            componentMap.put(SupercarDealer.class, new SupercarDealer());
+        });
+        simpleDiContainer.resolveDependency();
+
+        UsingDiAnnotationAction annotationAction = ((UsingDiAnnotationAction) simpleDiContainer.getComponent(UsingDiAnnotationAction.class));
+        annotationAction.callFriend();
     }
 
     /**
