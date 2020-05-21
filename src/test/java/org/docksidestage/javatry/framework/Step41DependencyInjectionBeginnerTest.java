@@ -128,6 +128,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
         // your answer? =>
+        // TODO hieu consider about advantages and disadvantages of each design patterns by subaru (2020/05/21)
         /** (by hieu 21/05/2020)
          * Initialize process now moved to another class (NonDiAnimalFactory vs NonDiIndividualFactoryAction)
          * Each instance is created from it's class
@@ -144,6 +145,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
         // your answer? =>
+        // TODO hieu consider about advantages and disadvantages of each design patterns by subaru (2020/05/21)
         /**
          * Dependencies is injected via setter or via DI Container
          * (by hieu 21/05/2020)
