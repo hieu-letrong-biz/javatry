@@ -56,6 +56,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
          *      2. Initialization of low-level modules will be performed by DI Container.
          *      -> Difference: will not be performed by high-level modules
          *
+         *      TODO [comment] Sometimes, JavaConfig is also used instead of xml on spring framework case by subaru (2020/05/21)
          *      3. Which module attached to which interface will be configured in a particular file (XML as far as I know)
          *
          *      4. No need to create low-level module's instance in high-level module (Cuz its already there)
@@ -175,7 +176,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     /**
      * What is class or file of DI settings that defines MemberBhv class as DI component in the following Lasta Di application? <br>
      * (以下のLasta DiアプリケーションでMemberBhvクラスをDIコンポーネントとして定義しているDI設定クラスもしくはファイルは？) <br>
-     * 
+     *
      * https://github.com/lastaflute/lastaflute-example-harbor
      */
     public void test_zone_search_component_on_LastaDi() {
@@ -185,7 +186,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     /**
      * What is class or file of DI settings that defines MemberBhv class as DI component in the following Spring application? <br>
      * (以下のSpringアプリケーションでMemberBhvクラスをDIコンポーネントとして定義しているDI設定クラスもしくはファイルは？) <br>
-     * 
+     *
      * https://github.com/dbflute-example/dbflute-example-on-springboot
      */
     public void test_zone_search_component_on_Spring() {
