@@ -144,6 +144,21 @@ public class Step12StreamStringTest extends PlainTestCase {
      * ("Water" で始まる文字列をしまっているカラーボックスの色は？)
      */
     public void test_startsWith_findFirstWord() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        List<String> boxColorStartWithWater = colorBoxList.stream()
+                .filter(colorBox -> colorBox.getSpaceList()
+                        .stream()
+                        .map(boxSpace -> boxSpace.getContent())
+                        .filter(content -> content instanceof String)
+                        .map(content -> String.valueOf(content))
+                        .anyMatch(content -> content.startsWith("Water")))
+                .map(colorBox -> colorBox.getColor().getColorName())
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < boxColorStartWithWater.size(); i++) {
+            log(boxColorStartWithWater.get(i));
+        }
+        // red
     }
 
     /**
