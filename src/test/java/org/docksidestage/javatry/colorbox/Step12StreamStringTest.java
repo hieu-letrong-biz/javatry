@@ -191,6 +191,18 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる "front" で終わる文字列で、最初の "front" は何文字目から始まる？)
      */
     public void test_indexOf_findIndex() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        int answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(content -> content.getContent())
+                .filter(content -> content instanceof String)
+                .map(content -> String.valueOf(content))
+                .filter(content -> content.endsWith("front"))
+                .findFirst()
+                .orElse("not found")
+                .indexOf("front");
+        log(answer); //5
     }
 
     /**
