@@ -259,6 +259,17 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる "Water" で始まる文字列の最後の一文字は？)
      */
     public void test_substring_findLastChar() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(content -> content.getContent())
+                .filter(content -> content instanceof String)
+                .map(content -> String.valueOf(content))
+                .filter(content -> content.startsWith("Water"))
+                .findFirst()
+                .orElse("not found");
+        log(answer.equals("not found") ? "not found" : answer.charAt(answer.length() - 1)); //t
     }
 
     // ===================================================================================
