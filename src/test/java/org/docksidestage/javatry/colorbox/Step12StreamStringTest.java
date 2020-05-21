@@ -110,6 +110,16 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の長さの合計は？)
      */
     public void test_length_calculateLengthSum() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        Integer lengthSum = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content instanceof String)
+                .map(stringContent -> String.valueOf(stringContent))
+                .map(stringLength -> stringLength.length())
+                .reduce(0, (current, next) -> current + next);
+        log(lengthSum); //23 OK
     }
 
     /**
