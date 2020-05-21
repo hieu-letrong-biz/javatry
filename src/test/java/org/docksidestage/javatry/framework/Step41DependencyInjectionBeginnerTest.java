@@ -94,7 +94,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
          * Cause things've changed, so we must write more longer code
          *
          * Result is SecondAction representing the state that
-         * the relationships between modules is become looser
+         * the relationships between modules are become looser
          * or
          * High-level module is depends on low-level module (FirstAction)
          * Low-level module is now depends on High-level module (Second Action)
@@ -107,7 +107,12 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectSecondAction と NonDiFactoryMethodAction の違いは？)
      */
     public void test_nondi_difference_between_second_and_FactoryMethod() {
-        // your answer? => 
+        // your answer? =>
+        /**
+         * Initialize process now moved to another function
+         * The relationships between method are become looser
+         * do() function now take less responsible for init() or create() works
+         */
         // and your confirmation code here freely
     }
 
