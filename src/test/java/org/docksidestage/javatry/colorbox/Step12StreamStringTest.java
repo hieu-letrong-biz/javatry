@@ -81,7 +81,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .sorted()
                 .collect(Collectors.toList());
 
-        log(lengthArray.get(lengthArray.size() -1) - lengthArray.get(0)); // 3 OK
+        log(lengthArray.get(lengthArray.size() - 1) - lengthArray.get(0)); // 3 OK
     }
 
     // has small #adjustmemts from ClassicStringTest
@@ -91,6 +91,18 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる値 (文字列以外はtoString()) の中で、二番目に長い文字列は？ (Streamでのソートありで))
      */
     public void test_length_findSecondMax() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        List<String> contents = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .map(stringContent -> String.valueOf(stringContent))
+                .sorted(Comparator.comparingInt(String::length))
+                .collect(Collectors.toList());
+        int contentsSize = contents.size();
+        String answer = contentsSize > 2 ? contents.get(contentsSize - 2) : "Not found";
+        log(answer); // {sea={dockside=[over, table, hello], hanger=[mystic, shadow, mirage], harbor={spring=fashion, summer=pirates,
+        // autumn=vi, winter=jazz}}, land={orleans=[oh, party], showbase=[oneman]}}
     }
 
     /**
