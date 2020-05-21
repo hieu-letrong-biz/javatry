@@ -276,10 +276,24 @@ public class Step12StreamStringTest extends PlainTestCase {
     //                                                                           replace()
     //                                                                           =========
     /**
-     * How many characters does string that contains "o" in color-boxes and removing "o" have? <br>
+     * How many characters does string
+     * that contains "o" in color-boxes and removing "o"
+     * have? <br>
      * (カラーボックスに入ってる "o" (おー) を含んだ文字列から "o" を全て除去したら何文字？)
      */
     public void test_replace_remove_o() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        String answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(content -> content.getContent())
+                .filter(content -> content instanceof String)
+                .map(content -> String.valueOf(content))
+                .filter(content -> content.startsWith("Water"))
+                .findFirst()
+                .orElse("404")
+                .replace("o", "");
+        log(answer.equals("404") ? "not found" : answer.length()); //9
     }
 
     /**
