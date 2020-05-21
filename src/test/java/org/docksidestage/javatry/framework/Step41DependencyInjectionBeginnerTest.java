@@ -35,9 +35,43 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     public void test_whatis_DependencyInjection() {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // What is Dependency Injection?
-        // - - - - - (your answer?)
-        //
-        //
+        /** Learning Dependency Injection (DI) Note (by hieu 21/05/2020)
+         *
+         * To learn about DI, first we must understand where is it from
+         * Start from the bigger to the smaller
+         *              SOLID (an acronym for 5 important design principles when doing OOP)
+         *           -> Dependency Inversion Principle (a principle to designing and writing code, D in SOLID)
+         *           -> Inversion of Control (a design pattern to protect the ^DIP)
+         *           -> Dependency Injection (a way to implement IoC, could be consider as a design pattern)
+         *
+         * Major concept of DI: The dependency module will be injected into the high level module.
+         *
+         * Why: Loose coupling code -> Easy to change
+         *      Testability
+         *      Clear dependency & Separate of concern
+         *
+         * How: 1. Modules do not communicate directly with each other, but through interfaces
+         *      The low-level module will implement the interface, the high-level module will call the low-level module through the interface.
+         *
+         *      2. Initialization of low-level modules will be performed by DI Container.
+         *      -> Difference: will not be performed by high-level modules
+         *
+         *      3. Which module attached to which interface will be configured in a particular file (XML as far as I know)
+         *
+         *      4. No need to create low-level module's instance in high-level module (Cuz its already there)
+         *         All we need is just call it
+         * Types: Constructor Injection, Setter Injection, Interface Injection
+         *
+         * Merits: In "Why section"
+         *         Easy to test and maintenance
+         *         Relationships between modules can be read (understand) easily in 1 file
+         *
+         * Defects: Hard to learn of course
+         *          Also the complexity of code
+         *          All object must be init from the begin, so IMP this will reduce performance
+         *          "Easy to change" = "Hard to debug"
+         *
+         */
         //
         // _/_/_/_/_/_/_/_/_/_/
     }
