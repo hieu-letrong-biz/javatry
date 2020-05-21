@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -301,6 +302,19 @@ public class Step12StreamStringTest extends PlainTestCase {
      * カラーボックスに入ってる java.io.File のパス文字列のファイルセパレーターの "/" を、Windowsのファイルセパレーターに置き換えた文字列は？
      */
     public void test_replace_fileseparator() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        List<String> answerList = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(boxSpace -> boxSpace.stream())
+                .map(content -> content.getContent())
+                .filter(content -> content instanceof File)
+                .map(content -> String.valueOf(content).replace("/", "\\"))
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < answerList.size(); i++) {
+            log(answerList.get(i));
+        }
+        // answer. \tmp\javatry\docksidestage.txt
     }
 
     // ===================================================================================
